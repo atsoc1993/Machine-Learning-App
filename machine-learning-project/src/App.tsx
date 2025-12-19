@@ -84,7 +84,7 @@ export default function App() {
                 <button className={buttonStyling}
                   onClick={() => {
                     const inputText = inputRefs[i] ? inputRefs[i].value : undefined
-                    let rinsedText = inputText?.replace(' ', '').toLowerCase();;
+                    let rinsedText = inputText?.replaceAll(' ', '').replaceAll('"', '').replaceAll("'", '').toLowerCase();
                     let splitText = rinsedText?.split(',');
                     if (!splitText) return;
                     let result = returnNumericArrayIfNumeric(splitText)
@@ -168,7 +168,7 @@ export default function App() {
           onClick={async () => trainModel()}
         >Train Model and Receive Weights & Biases</button>
         {trainingResult &&
-          <div className="text-center flex flex-col justify-evenly bg-indigo-200 w-3/4 h-2/5 mt-10 shadow-indigo-300 shadow-xl p-6 rounded-2xl">
+          <div className="text-center flex flex-col justify-evenly bg-indigo-200 w-3/4 h-2/5 mt-10 shadow-indigo-300 shadow-lg p-6 rounded-2xl">
             <p className="underline text-4xl">Training Results</p>
             <p>Message: {trainingResult.message}</p>
             <p>Weights: {trainingResult.weights}</p>
